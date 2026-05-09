@@ -17,19 +17,19 @@
   ],
   "icons": [
     {
-      "purpose": "maskable",
+      "purpose": "any",
       "sizes": "615x615",
       "src": "maskable_icon.png",
       "type": "image/png"
     },
     {
-      "purpose": "maskable",
+      "purpose": "any maskable",
       "sizes": "144x144",
       "src": "maskable_icon_x144.png",
       "type": "image/png"
     },
     {
-      "purpose": "maskable",
+      "purpose": "any maskable",
       "sizes": "192x192",
       "src": "maskable_icon_x192.png",
       "type": "image/png"
