@@ -40,5 +40,11 @@
       "src": "maskable_icon_x512.png",
       "type": "image/png"
     }
+  ],
+  "protocol_handlers": [
+    {
+      "protocol": "web+time",
+      "url": "/time?type=%s"
+    }
   ]
 }
