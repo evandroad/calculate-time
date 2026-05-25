@@ -113,9 +113,10 @@
     const base = new Date()
     base.setHours(hora, minuto, 0, 0)
 
+    const INTERVAL_DURATION = 60
     const inicioIntervalo = adicionarMinutos(base, 4 * 60)
-    const fimIntervalo = adicionarMinutos(inicioIntervalo, 90)
-    const horarioExato = adicionarMinutos(base, (8 * 60 + 48) + 90)
+    const fimIntervalo = adicionarMinutos(inicioIntervalo, INTERVAL_DURATION)
+    const horarioExato = adicionarMinutos(base, (8 * 60 + 48) + INTERVAL_DURATION)
     const menos18 = adicionarMinutos(horarioExato, -18)
     const mais18 = adicionarMinutos(horarioExato, 18)
 
