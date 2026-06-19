@@ -74,19 +74,29 @@
   <div class="resultado" id="saida">
     <h3>Saída</h3>
     <div class="linha">
-      Horário exato: <strong id="horarioExato">--:--</strong>
-    </div>
-    <div class="linha">
       Tolerância (-18 min): <strong id="menos18">--:--</strong>
     </div>
     <div class="linha">
+      Horário exato: <strong id="horarioExato">--:--</strong>
+    </div>
+    <div class="linha">
       Tolerância (+18 min): <strong id="mais18">--:--</strong>
+    </div>
+  </div>
+
+  <div style="margin-top: 15px;">
+    <label>Minutos +/-:</label><br>
+    <input type="number" id="minutos">
+
+    <div class="linha" style="margin-top:10px;">
+      Resultado: <strong id="resultadoMinutos">--:--</strong>
     </div>
   </div>
 </div>
 
 <script>
   const inputHora = document.getElementById('horaEntrada')
+  const inputMinutos = document.getElementById('minutos')
 
   function adicionarMinutos(data, minutos) {
     return new Date(data.getTime() + minutos * 60000)
@@ -126,6 +136,36 @@
     setDiv('menos18', menos18)
     setDiv('mais18', mais18)
   })
+
+  function calcularMinutos() {
+    const valorHora = inputHora.value
+
+    if (!valorHora) return
+
+    const [hora, minuto] = valorHora.split(':').map(Number)
+
+    const base = new Date()
+    base.setHours(hora, minuto, 0, 0)
+
+    const INTERVAL_DURATION = 60
+    const horarioExato = adicionarMinutos(base, (8 * 60 + 48) + INTERVAL_DURATION)
+    const minutos = Number(inputMinutos.value || 0)
+
+    let resultado
+
+    if (minutos < 0) {
+      resultado = adicionarMinutos(horarioExato, -18 + minutos)
+    } else if (minutos > 0) {
+      resultado = adicionarMinutos(horarioExato, 18 + minutos)
+    } else {
+      resultado = horarioExato
+    }
+
+    document.getElementById('resultadoMinutos').textContent = formatarHora(resultado)
+  }
+
+  inputMinutos.addEventListener('input', calcularMinutos)
+  inputHora.addEventListener('input', calcularMinutos)
 </script>
 
 </body>
