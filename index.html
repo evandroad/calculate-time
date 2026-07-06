@@ -95,6 +95,9 @@
 </div>
 
 <script>
+  const INTERVAL_DURATION = 60
+  const TOLERANCE = 18
+  const MINUTES = 30
   const inputHora = document.getElementById('horaEntrada')
   const inputMinutos = document.getElementById('minutos')
 
@@ -123,12 +126,11 @@
     const base = new Date()
     base.setHours(hora, minuto, 0, 0)
 
-    const INTERVAL_DURATION = 60
     const inicioIntervalo = adicionarMinutos(base, 4 * 60)
     const fimIntervalo = adicionarMinutos(inicioIntervalo, INTERVAL_DURATION)
-    const horarioExato = adicionarMinutos(base, (8 * 60 + 48) + INTERVAL_DURATION)
-    const menos18 = adicionarMinutos(horarioExato, -18)
-    const mais18 = adicionarMinutos(horarioExato, 18)
+    const horarioExato = adicionarMinutos(base, (8 * 60 + MINUTES) + INTERVAL_DURATION)
+    const menos18 = adicionarMinutos(horarioExato, -TOLERANCE)
+    const mais18 = adicionarMinutos(horarioExato, TOLERANCE)
 
     setDiv('inicioIntervalo', inicioIntervalo)
     setDiv('fimIntervalo', fimIntervalo)
@@ -147,16 +149,15 @@
     const base = new Date()
     base.setHours(hora, minuto, 0, 0)
 
-    const INTERVAL_DURATION = 60
-    const horarioExato = adicionarMinutos(base, (8 * 60 + 48) + INTERVAL_DURATION)
+    const horarioExato = adicionarMinutos(base, (8 * 60 + MINUTES) + INTERVAL_DURATION)
     const minutos = Number(inputMinutos.value || 0)
 
     let resultado
 
     if (minutos < 0) {
-      resultado = adicionarMinutos(horarioExato, -18 + minutos)
+      resultado = adicionarMinutos(horarioExato, -TOLERANCE + minutos)
     } else if (minutos > 0) {
-      resultado = adicionarMinutos(horarioExato, 18 + minutos)
+      resultado = adicionarMinutos(horarioExato, TOLERANCE + minutos)
     } else {
       resultado = horarioExato
     }
