@@ -74,9 +74,6 @@
   <div class="resultado" id="saida">
     <h3>Saída</h3>
     <div class="linha">
-      Tolerância (-18 min): <strong id="menos18">--:--</strong>
-    </div>
-    <div class="linha">
       Horário exato: <strong id="horarioExato">--:--</strong>
     </div>
     <div class="linha">
@@ -129,13 +126,11 @@
     const inicioIntervalo = adicionarMinutos(base, 4 * 60)
     const fimIntervalo = adicionarMinutos(inicioIntervalo, INTERVAL_DURATION)
     const horarioExato = adicionarMinutos(base, (8 * 60 + MINUTES) + INTERVAL_DURATION)
-    const menos18 = adicionarMinutos(horarioExato, -TOLERANCE)
     const mais18 = adicionarMinutos(horarioExato, TOLERANCE)
 
     setDiv('inicioIntervalo', inicioIntervalo)
     setDiv('fimIntervalo', fimIntervalo)
     setDiv('horarioExato', horarioExato)
-    setDiv('menos18', menos18)
     setDiv('mais18', mais18)
   })
 
