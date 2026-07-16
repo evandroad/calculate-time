@@ -150,7 +150,7 @@
     let resultado
 
     if (minutos < 0) {
-      resultado = adicionarMinutos(horarioExato, -TOLERANCE + minutos)
+      resultado = adicionarMinutos(horarioExato, minutos)
     } else if (minutos > 0) {
       resultado = adicionarMinutos(horarioExato, TOLERANCE + minutos)
     } else {
