@@ -74,6 +74,9 @@
   <div class="resultado" id="saida">
     <h3>Saída</h3>
     <div class="linha">
+      Tolerância (-18 min): <strong id="menos18">--:--</strong>
+    </div>
+    <div class="linha">
       Horário exato: <strong id="horarioExato">--:--</strong>
     </div>
     <div class="linha">
@@ -94,7 +97,7 @@
 <script>
   const INTERVAL_DURATION = 60
   const TOLERANCE = 18
-  const MINUTES = 30
+  const MINUTES = 48
   const inputHora = document.getElementById('horaEntrada')
   const inputMinutos = document.getElementById('minutos')
 
@@ -127,11 +130,13 @@
     const fimIntervalo = adicionarMinutos(inicioIntervalo, INTERVAL_DURATION)
     const horarioExato = adicionarMinutos(base, (8 * 60 + MINUTES) + INTERVAL_DURATION)
     const mais18 = adicionarMinutos(horarioExato, TOLERANCE)
+    const menos18 = adicionarMinutos(horarioExato, -TOLERANCE)
 
     setDiv('inicioIntervalo', inicioIntervalo)
     setDiv('fimIntervalo', fimIntervalo)
     setDiv('horarioExato', horarioExato)
     setDiv('mais18', mais18)
+    setDiv('menos18', menos18)
   })
 
   function calcularMinutos() {
@@ -150,7 +155,7 @@
     let resultado
 
     if (minutos < 0) {
-      resultado = adicionarMinutos(horarioExato, minutos)
+      resultado = adicionarMinutos(horarioExato, -TOLERANCE + minutos)
     } else if (minutos > 0) {
       resultado = adicionarMinutos(horarioExato, TOLERANCE + minutos)
     } else {
